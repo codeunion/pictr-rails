@@ -5,18 +5,16 @@ describe "User Account Spec" do
     it "Persists the user in the database" do
       visit root_path
       click_link_or_button "create_account"
-      within "#user_form" do
-        fill_in ".user_name", with: "scott"
-        fill_in ".email_address", with: "scott@example.com"
-        fill_in ".password", with: "password"
-        fill_in ".password_confirm", with: "password"
+      fill_in "user_email", with: "scott@example.com"
+      fill_in "user_password", with: "password"
+      fill_in "user_password_confirmation", with: "password"
 
-        click_link_or_button ".create_user"
-      end
+      click_link_or_button "Sign up"
 
-      expect(page).to have_content("Account created for scott@example")
-      expect(User.exists?(email_address: "scott@example.com")).to be_truthy
-      expect(curent_path).to eq(root_path)
+
+      expect(page).to have_content("You have signed up successfully")
+      expect(User.exists?(email: "scott@example.com")).to be_truthy
+      expect(current_path).to eq(root_path)
     end
   end
 end

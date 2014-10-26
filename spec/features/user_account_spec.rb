@@ -1,20 +1,48 @@
 require 'features/helper'
 
-describe "User Account Spec" do
-   describe "Creating an Account" do
-    it "Persists the user in the database" do
-      visit root_path
-      click_link_or_button "create_account"
-      fill_in "user_email", with: "scott@example.com"
-      fill_in "user_password", with: "password"
-      fill_in "user_password_confirmation", with: "password"
+feature "User Account Spec" do
+  scenario "A guest may create an account" do
+    visit root_path
+    click_link_or_button "create_account"
 
-      click_link_or_button "Sign up"
+    fill_in "user_email", with: "scott@example.com"
+    fill_in "user_password", with: "password"
+    fill_in "user_password_confirmation", with: "password"
 
+    click_link_or_button "Sign up"
 
-      expect(page).to have_content("You have signed up successfully")
-      expect(User.exists?(email: "scott@example.com")).to be_truthy
-      expect(current_path).to eq(root_path)
-    end
+    expect(page).to have_content("You have signed up successfully")
+    expect(User.exists?(email: "scott@example.com")).to be_truthy
+    expect(current_path).to eq(root_path)
+  end
+
+  scenario "A registered user may log in" do
+    registered_user = User.create({ email: "existing-user@example.com", password: "password" })
+
+    visit "/"
+    click_link_or_button "sign_in"
+
+    fill_in "user_email", with: "existing-user@example.com"
+    fill_in "user_password", with: "password"
+
+    click_link_or_button "Log in"
+
+    expect(page).to have_content("Signed in successfully")
+    expect(current_path).to eq(root_path)
+  end
+
+  scenario "A logged in user may log out" do
+    registered_user = User.create({ email: "existing-user@example.com", password: "password" })
+
+    visit "/"
+    click_link_or_button "sign_in"
+
+    fill_in "user_email", with: "existing-user@example.com"
+    fill_in "user_password", with: "password"
+
+    click_link_or_button "Log in"
+
+    click_link_or_button "sign_out"
+    expect(page).to have_content("Signed out successfully")
   end
 end

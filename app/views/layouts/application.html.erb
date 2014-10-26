@@ -8,16 +8,13 @@
 </head>
 <body>
 <nav>
-  <a id="create_account" href="<%= new_user_registration_path %>">Create an Account</a>
+  <%= link_to('Create_account',  new_user_registration_path, id: :create_account) %>
+  <%= link_to('Sign_in', new_user_session_path, id: :sign_in) %>
+  <%= link_to('Sign_out', destroy_user_session_path, method: :delete, id: :sign_out) %>
 </nav>
 
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% end %>
-
-<% if flash[:alert] %>
-  <p class="alert"><%= flash[:alert] %></p>
-<% end %>
+<%= render partial: "shared/flash", locals: { type: :notice } %>
+<%= render partial: "shared/flash", locals: { type: :alert } %>
 
 <%= yield %>
 

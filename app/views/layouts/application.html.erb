@@ -8,13 +8,12 @@
 </head>
 <body>
 <nav>
-  <%= link_to('Create_account',  new_user_registration_path, id: :create_account) %>
-  <%= link_to('Sign_in', new_user_session_path, id: :sign_in) %>
-  <%= link_to('Sign_out', destroy_user_session_path, method: :delete, id: :sign_out) %>
+  <%= render partial: nav_partial %>
 </nav>
 
-<%= render partial: "shared/flash", locals: { type: :notice } %>
-<%= render partial: "shared/flash", locals: { type: :alert } %>
+<% [:notice, :alert].each do |type| %>
+  <%= render partial: "shared/flash", locals: { type: type } %>
+<% end %>
 
 <%= yield %>
 

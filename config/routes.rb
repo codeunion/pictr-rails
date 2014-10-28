@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  get 'pictures/new'
+
   devise_for :users
   root 'welcome#index'
+
+  resources :pictures, only: [:new, :index, :create]
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

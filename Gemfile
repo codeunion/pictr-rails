@@ -14,6 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise', '~> 3.4.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'carrierwave', '~> 0.10.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

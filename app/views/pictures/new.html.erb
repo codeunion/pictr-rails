@@ -1,0 +1,16 @@
+<h1>Upload a picture</h1>
+
+<%= form_for(@picture) do |f| %>
+
+  <h3> 1. Pick a picture</h3>
+  <%= f.file_field :picture %>
+  <h3> 2. Describe picture</h3>
+  <div><%= f.label :caption %><br />
+    <%= f.text_field :caption %></div>
+
+  <div><%= f.label :description %><br />
+    <%= f.text_area :description %></div>
+
+  <div><%= f.submit "Upload Pic!" %>, { id: "commit" } %></div>
+<% end %>
+

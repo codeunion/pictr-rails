@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028190613) do
-
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20141029130515) do
 
   create_table "pictures", force: true do |t|
     t.string   "picture",                  null: false
@@ -21,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141028190613) do
     t.text     "description", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id",                 null: false
   end
 
   create_table "users", force: true do |t|

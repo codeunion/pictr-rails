@@ -15,6 +15,8 @@ gem 'devise', '~> 3.4.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave-aws', "~> 0.4.1"
+gem 'dotenv-rails', "~> 1.0.1"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

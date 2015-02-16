@@ -1,0 +1,13 @@
+{
+  "category": "project",
+  "tags": [
+    "ruby",
+    "rails",
+    "testing",
+    "writing-documentation",
+    "devise",
+    "carrierwave",
+    "file-uploading"
+  ],
+  "notes": "Just the guide for a project; starter code in separate repo. LICENSE has unnecessary .md extension."
+}
